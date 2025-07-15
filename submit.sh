@@ -42,13 +42,13 @@ do
 done < samples/samples.csv
 
 # Ejecutar pipeline Nextflow
-nextflow run /Storage/data1/jenny.paola/R2C/workflows/main.nf \
-  -c /Storage/data1/jenny.paola/R2C/config/nextflow.config \
-  --samples_csv /Storage/data1/jenny.paola/R2C/samples/samples.csv \
-  --ref_genomeA /Storage/data1/jenny.paola/references/GCF_000208745.1_Criollo_cocoa_genome_V2_genomic.fix.fna \
-  --ref_genomeB /Storage/data1/jenny.paola/references/GCA_002911725.1_ASM291172v1_genomic.fix.fna \
-  --ref_transcriptomeA /Storage/data1/jenny.paola/references/GCF_000208745.1_Criollo_cocoa_genome_V2_rna_from_genomic.fix.fna \
-  --ref_transcriptomeB /Storage/data1/jenny.paola/references/GCA_002911725.1_ASM291172v1_rna_from_genomic.fix.fna \
+nextflow run /Storage/data1/jenny.paola/Ejercicio_RNAseq/workflows/main.nf \
+  -c /Storage/data1/jenny.paola/Ejercicio_RNAseq/config/nextflow.config \
+  --samples_csv /Storage/data1/jenny.paola/Ejercicio_RNAseq/samples/samples.csv \
+  --ref_genomeA /Storage/data1/jenny.paola/Ejercicio_RNAseq/references/GCF_000208745.1_Criollo_cocoa_genome_V2_genomic.fix.fna \
+  --ref_genomeB /Storage/data1/jenny.paola/Ejercicio_RNAseq/references/GCA_002911725.1_ASM291172v1_genomic.fix.fna \
+  --ref_transcriptomeA /Storage/data1/jenny.paola/Ejercicio_RNAseq/references/GCF_000208745.1_Criollo_cocoa_genome_V2_rna_from_genomic.fix.fna \
+  --ref_transcriptomeB /Storage/data1/jenny.paola/Ejercicio_RNAseq/references/GCA_002911725.1_ASM291172v1_rna_from_genomic.fix.fna \
   -profile process_medium_sge \
-  -work-dir /Storage/data1/jenny.paola/R2C/work \
+  -work-dir /Storage/data1/jenny.paola/Ejercicio_RNAseq/work \
   -resume

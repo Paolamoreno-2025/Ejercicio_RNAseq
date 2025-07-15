@@ -26,6 +26,7 @@ process bbduk {
         scriptText = """
             echo "🔧 Running BBduk in Paired-End mode"
             bbduk.sh in1=${in1} in2=${in2} \\
+                     t=${task.cpus} \\
                      out1=${out1} out2=${out2} \\
                      ref=adapters,artifacts ktrim=r k=23 mink=11 hdist=1 tpe tbo
         """
@@ -36,6 +37,7 @@ process bbduk {
         scriptText = """
             echo "🔧 Running BBduk en Single-End mode"
             bbduk.sh in=${in1} out=${out1} \\
+                     t=${task.cpus} \\
                      ref=adapters,artifacts ktrim=r k=23 mink=11 hdist=1
         """
     } else {

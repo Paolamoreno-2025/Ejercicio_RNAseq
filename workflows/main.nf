@@ -12,12 +12,6 @@ include { salmonQuant         } from '../modules/salmonQuant.nf'
 include { sampleInfo          } from '../modules/sampleInfo.nf'
 include { salmonIndex         } from '../modules/salmonIndex.nf'
 
-params.samples_csv         = params.samples_csv         ?: "/Storage/data1/jenny.paola/Ejercicio_RNAseq/samples/samples.csv"
-params.ref_transcriptomeA  = params.ref_transcriptomeA  ?: "/Storage/data1/jenny.paola/Ejercicio_RNAseq/references/GCA_002911725.1_ASM291172v1_rna_from_genomic.fix.fna"
-params.ref_genomeA         = params.ref_genomeA         ?: "/Storage/data1/jenny.paola/Ejercicio_RNAseq/references/GCA_002911725.1_ASM291172v1_genomic.fix.fna"
-params.ref_transcriptomeB  = params.ref_transcriptomeB  ?: "/Storage/data1/jenny.paola/Ejercicio_RNAseq/references/GCF_000208745.1_Criollo_cocoa_genome_V2_rna_from_genomic.fix.fna"
-params.ref_genomeB         = params.ref_genomeB         ?: "/Storage/data1/jenny.paola/Ejercicio_RNAseq/references/GCF_000208745.1_Criollo_cocoa_genome_V2_genomic.fix.fna"
-
 workflow {
 
     // Leer CSV de muestras y obtener run y sample_name
@@ -68,7 +62,7 @@ workflow {
     salmonIndex.out.view{ "salmonIndex: $it" }
 
     // Salmon cuantificación usando trimmed reads + índice
-    salmon_quant_ch = trimmed_fastq_ch.combine(salmon_index_ch) | salmonQuant
+    salmon_quant_ch = trimmed_ch.combine(salmon_index_ch) | salmonQuant
     salmonQuant.out.view{ "salmonQuant: $it" }
 
     // Generación de información de muestras
@@ -79,8 +73,7 @@ workflow {
     multiqc_raw_ch.view { "📊 MultiQC global report generado para raw reads" }
     fastqc_trimmed_ch.view { "✅ FastQC trimmed reads completado para run: ${it[0]}" }
     multiqc_trimmed_ch.view { "📊 MultiQC global report generado para trimmed reads" }
-    salmon_quantA_ch.view { "✅ Salmon quant A completado para run: ${it[0]}" }
-    salmon_quantB_ch.view { "✅ Salmon quant B completado para run: ${it[0]}" }
+    salmon_quant_ch.view { "✅ Salmon quant completado para run: ${it[0]}" }
     sample_info_ch.view { "📁 Sample info generado para run: ${it[0]}" }
 }
 

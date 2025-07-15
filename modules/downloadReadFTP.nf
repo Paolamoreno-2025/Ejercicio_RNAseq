@@ -12,6 +12,6 @@ process downloadReadFTP {
     script:
     """
 
-    python /Storage/data1/jenny.paola/R2C/bin/download_from_json.py --json ${json_file} --output ${run}.fastq.gz
+    python /Storage/data1/jenny.paola/Ejercicio_RNAseq/bin/download_from_json.py --json ${json_file} --output ${run}.fastq.gz
     """
 }
