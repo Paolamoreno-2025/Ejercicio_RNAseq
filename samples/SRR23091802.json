@@ -1,0 +1,86 @@
+{
+    "SRR23091802": {
+        "accession": "SRR23091802",
+        "experiment": "SRX19044337",
+        "study": "SRP217924",
+        "sample": "SRS16461284",
+        "title": "NextSeq 550 sequencing; RNA seq of cacao leaves +/- Phytopthora palmivora infection",
+        "attributes": {
+            "ENA-STATUS-ID": "4",
+            "ENA-FIRST-PUBLIC": "2023-01-17",
+            "ENA-LAST-UPDATE": "2023-01-18",
+            "ENA-BASE-COUNT": 1099178925,
+            "ENA-SPOT-COUNT": 14655719
+        },
+        "files": {
+            "ftp": [
+                {
+                    "accession": "SRR23091802",
+                    "filename": "SRR23091802.fastq.gz",
+                    "filetype": "fastq",
+                    "filesize": 569720186,
+                    "filenumber": 1,
+                    "md5": "34e857e145d54ab47917a1a566b2181a",
+                    "urltype": "ftp",
+                    "url": "ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR230/002/SRR23091802/SRR23091802.fastq.gz"
+                }
+            ],
+            "aws": [
+                {
+                    "accession": "SRR23091802",
+                    "filename": "NA33_167_2C63_S30_R1_001.fastq.gz.1",
+                    "filetype": "fastq",
+                    "filesize": null,
+                    "filenumber": 1,
+                    "md5": null,
+                    "urltype": "aws",
+                    "url": "s3://sra-pub-src-4/SRR23091802/NA33_167_2C63_S30_R1_001.fastq.gz.1"
+                },
+                {
+                    "accession": "SRR23091802",
+                    "filename": "SRR23091802",
+                    "filetype": "sra",
+                    "filesize": null,
+                    "filenumber": 1,
+                    "md5": null,
+                    "urltype": "aws",
+                    "url": "https://sra-pub-run-odp.s3.amazonaws.com/sra/SRR23091802/SRR23091802"
+                },
+                {
+                    "accession": "SRR23091802",
+                    "filename": "SRR23091802.lite.1",
+                    "filetype": "sra",
+                    "filesize": null,
+                    "filenumber": 1,
+                    "md5": null,
+                    "urltype": "aws",
+                    "url": "s3://sra-pub-zq-3/SRR23091802/SRR23091802.lite.1"
+                }
+            ],
+            "gcp": [
+                {
+                    "accession": "SRR23091802",
+                    "filename": "SRR23091802.lite.1",
+                    "filetype": "sra",
+                    "filesize": null,
+                    "filenumber": 1,
+                    "md5": null,
+                    "urltype": "gcp",
+                    "url": "gs://sra-pub-zq-105/SRR23091802/SRR23091802.lite.1"
+                }
+            ],
+            "ncbi": [
+                {
+                    "accession": "SRR23091802",
+                    "filename": "SRR23091802.lite.1",
+                    "filetype": "sra",
+                    "filesize": null,
+                    "filenumber": 1,
+                    "md5": null,
+                    "urltype": "ncbi",
+                    "url": "https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos4/sra-pub-zq-1/SRR023/23091/SRR23091802/SRR23091802.lite.1"
+                }
+            ]
+        }
+    }
+}
