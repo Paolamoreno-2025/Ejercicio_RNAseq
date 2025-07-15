@@ -2,10 +2,8 @@
 #$ -q all.q
 #$ -V
 #$ -cwd
-#$ -pe smp 4
-#$ -N R2C_nextflow
-#$ -o /Storage/data1/jenny.paola/R2C/logs/nextflow_job.o$JOB_ID
-#$ -e /Storage/data1/jenny.paola/R2C/logs/nextflow_job.e$JOB_ID
+#$ -pe smp 1
+#$ -N EjercicioRNASeq_nextflow
 #$ -S /bin/bash
 
 # Activar Conda
