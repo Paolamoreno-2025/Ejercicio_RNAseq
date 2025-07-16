@@ -6,7 +6,7 @@ process bbduk {
     tuple val(run), path(fastq_reads)
 
     output:
-    tuple val(run), path("trimmed_*")
+    tuple val(run), path("trimmed_*"), emit: bbduk_output
 
     script:
     def scriptText = ''

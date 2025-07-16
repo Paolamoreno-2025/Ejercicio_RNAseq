@@ -51,7 +51,11 @@ workflow {
         .view { "📦 bbduk INPUT: ${it[0]} -> ${it[1]*.getName()}" }
         | bbduk
 
-    fastqc_trimmed_ch = fastqc_trimmed(trimmed_ch)
+    bbduk_output = trimmed_ch.map { run, files ->
+       def file_list = files instanceof List ? files : [files]
+       tuple(run, file_list)
+    }
+    fastqc_trimmed_ch = fastqc_trimmed(bbduk_output)
 
     // Extraer dirs FastQC trimmed para MultiQC trimmed global
     fastqc_trimmed_dirs_ch = fastqc_trimmed_ch.map { run, fastqc_dir -> fastqc_dir }
@@ -62,7 +66,7 @@ workflow {
     salmonIndex.out.view{ "salmonIndex: $it" }
 
     // Salmon cuantificación usando trimmed reads + índice
-    salmon_quant_ch = trimmed_ch.combine(salmon_index_ch) | salmonQuant
+    salmon_quant_ch = bbduk_output.combine(salmon_index_ch) | salmonQuant
     salmonQuant.out.view{ "salmonQuant: $it" }
 
     // Generación de información de muestras
