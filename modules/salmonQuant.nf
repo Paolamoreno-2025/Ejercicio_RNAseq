@@ -18,7 +18,7 @@ process salmonQuant {
         """
         echo "🚀 Salmon quant (Paired-End) for ${run}"
         salmon quant -i ${salmon_index} -l A \\
-            --threads ${task.cpus} \\
+            --threads 8 \\
             -1 ${trimmed_reads[0]} \\
             -2 ${trimmed_reads[1]} \\
             -o ${run} \\
@@ -28,7 +28,7 @@ process salmonQuant {
         """
         echo "🚀 Salmon quant (Single-End) for ${run}"
         salmon quant -i ${salmon_index} -l A \\
-            --threads ${task.cpus} \\
+            --threads 8 \\
             -r ${trimmed_reads[0]} \\
             -o ${run} \\
             --validateMappings

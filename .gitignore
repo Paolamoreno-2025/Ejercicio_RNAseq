@@ -2,3 +2,6 @@ work/
 references/
 samples/
 .nextflow*
+EjercicioRNASeq_nextflow.*
+report/
+results/
