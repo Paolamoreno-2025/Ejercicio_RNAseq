@@ -3,7 +3,7 @@ process multiqc_trimmed {
     conda 'bioconda::multiqc'
 
     input:
-    tuple val(run), path(fastqc_reports)
+    path fastqc_reports
 
     output:
     path "multiqc_report_trimmed.html", emit: out
