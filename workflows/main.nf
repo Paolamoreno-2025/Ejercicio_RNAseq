@@ -42,20 +42,37 @@ workflow {
     // Esperar a recolectar todos los directorios FastQC en una lista para MultiQC global
     multiqc_raw_ch = multiqc(fastqc_dirs_ch.collect())
 
-    // BBDuk y FastQC en lecturas recortadas (single-end y futuro paired-end)
+//    // BBDuk y FastQC en lecturas recortadas (single-end y futuro paired-end)
+//    trimmed_ch = reads_ch
+//        .map { run, fq ->
+//            def fq_list = fq instanceof List ? fq : [fq]
+//            tuple(run, fq_list)
+//        }
+//        .view { "📦 bbduk INPUT: ${it[0]} -> ${it[1]*.getName()}" }
+//        | bbduk
+//
+//    bbduk_output = trimmed_ch.map { run, files ->
+//       def file_list = files instanceof List ? files : [files]
+//       tuple(run, file_list)
+//    }
+
     trimmed_ch = reads_ch
         .map { run, fq ->
             def fq_list = fq instanceof List ? fq : [fq]
             tuple(run, fq_list)
         }
-        .view { "📦 bbduk INPUT: ${it[0]} -> ${it[1]*.getName()}" }
-        | bbduk
+        .view { run, fq_list ->
+            "📦  bbduk INPUT: ${run} -> ${fq_list*.getName()}"
+        }
+    
+    bbduk_out = trimmed_ch | bbduk
 
-    bbduk_output = trimmed_ch.map { run, files ->
-       def file_list = files instanceof List ? files : [files]
-       tuple(run, file_list)
-    }
-    fastqc_trimmed_ch = fastqc_trimmed(bbduk_output)
+//    fastqc_trimmed_ch = fastqc_trimmed(bbduk_output)
+    fastqc_trimmed_ch = bbduk_out
+        .bbduk_output    // seleciona o canal principal de trimmed reads
+        .map { run, files ->
+                tuple(run, files)
+             } | fastqc_trimmed
 
     // Extraer dirs FastQC trimmed para MultiQC trimmed global
     fastqc_trimmed_dirs_ch = fastqc_trimmed_ch.map { run, fastqc_dir -> fastqc_dir }
@@ -66,7 +83,7 @@ workflow {
     salmonIndex.out.view{ "salmonIndex: $it" }
 
     // Salmon cuantificación usando trimmed reads + índice
-    salmon_quant_ch = bbduk_output.combine(salmon_index_ch) | salmonQuant
+    salmon_quant_ch = bbduk_out.bbduk_output.combine(salmon_index_ch) | salmonQuant
     salmonQuant.out.view{ "salmonQuant: $it" }
 
     // Generación de información de muestras
