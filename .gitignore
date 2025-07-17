@@ -4,4 +4,6 @@ samples/
 .nextflow*
 EjercicioRNASeq_nextflow.*
 report/
+report/execution_trace.txt
+report/*
 results/
